@@ -1,0 +1,37 @@
+# Node and build artifacts
+node_modules/
+android/
+ios/
+build/
+coverage/
+dist/
+.buckd/
+.expo/
+# System files
+.DS_Store
+.env
+.env.*  
+
+# Assets (if you don’t want Prettier touching them)
+*.png
+*.jpg
+*.svg
+*.ico
+*.ttf
+*.otf
+
+# Platform-specific files
+*.pbxproj
+Pods/
+*.xcworkspace
+*.xcuserstate
+*.xcuserdatad
+
+# Ignore generated JavaScript bundles
+*.bundle
+
+# Logs
+*.log
+
+# Prettier config itself
+.prettierignore

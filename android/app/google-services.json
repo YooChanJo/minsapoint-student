@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "456076951299",
+    "project_id": "minsapoint",
+    "storage_bucket": "minsapoint.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:456076951299:android:4ece40fd0ddf7f914c3336",
+        "android_client_info": {
+          "package_name": "com.minsapointstudent"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "456076951299-eti4j5hfe5p82qo9pc09mvp0vdr2ogk4.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBBw4un5hCYEYZ6HqRhKiwfpsClAKhnSFk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "456076951299-eti4j5hfe5p82qo9pc09mvp0vdr2ogk4.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
