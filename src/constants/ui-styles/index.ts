@@ -35,17 +35,17 @@ export interface ColorStyleOptionsType {
 }
 export const colors: ColorStyleOptionsType = {
   light: {
-    primary: "#4f46e5",
-    primaryHover: "#6366f1",
-    primaryActive: "#4338ca",
+    primary: "#1A1A1A",
+    primaryHover: "#333333",
+    primaryActive: "#000000",
 
-    secondary: "#06b6d4",
-    secondaryHover: "#22d3ee",
-    secondaryActive: "#0e7490",
+    secondary: "#858e9bff",
+    secondaryHover: "#d2dae4ff",
+    secondaryActive: "#eaeffbff",
 
-    accent: "#ec4899",
-    accentHover: "#f472b6",
-    accentActive: "#be185d",
+    accent: "#d00909ff",
+    accentHover: "#c65555ff",
+    accentActive: "#fc0909ff",
 
     success: "#22c55e",
     warning: "#eab308",
@@ -56,23 +56,23 @@ export const colors: ColorStyleOptionsType = {
     textMuted: "#555555",
     textSubtle: "#777777",
 
-    background: "#ffffff",
+    background: "#e4f4f5ff",
     surface: "#f5f5f5",
-    border: "#dddddd",
+    border: "#E6E6E6",
   },
 
   dark: {
-    primary: "#818cf8",
-    primaryHover: "#a5b4fc",
-    primaryActive: "#6366f1",
+    primary: "#f0f2ffff",
+    primaryHover: "#c7cdecff",
+    primaryActive: "#ffffffff",
 
     secondary: "#67e8f9",
     secondaryHover: "#22d3ee",
     secondaryActive: "#0e7490",
 
-    accent: "#f472b6",
-    accentHover: "#f9a8d4",
-    accentActive: "#db2777",
+    accent: "#fc0909ff",
+    accentHover: "#c65555ff",
+    accentActive: "#d00909ff",
 
     success: "#4ade80",
     warning: "#facc15",
