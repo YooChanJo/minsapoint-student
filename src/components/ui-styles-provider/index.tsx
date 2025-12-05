@@ -50,4 +50,3 @@ export function UiStylesProvider({ colorScheme, children }: UiStylesProviderProp
 }
 
 export { colors, borders, typographies, shadows };
-

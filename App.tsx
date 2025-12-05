@@ -23,10 +23,10 @@ import SettingsScreen from "./src/screens/settings";
 
 const Stack = createNativeStackNavigator<RootStackParamList>();
 function RootStack() {
-  const { userLoggedIn } = useAuth()
+  const { userLoggedIn } = useAuth();
   return (
     /* Debug screens */
-    <Stack.Navigator initialRouteName={userLoggedIn ? "Home" : "Login"} >
+    <Stack.Navigator initialRouteName={userLoggedIn ? "Home" : "Login"}>
       <Stack.Screen name="Home" component={RouteProtector(HomeScreen, "STUDENT")} />
       <Stack.Screen name="History" component={RouteProtector(HistoryScreen, "STUDENT")} />
       <Stack.Screen name="Settings" component={RouteProtector(SettingsScreen, "STUDENT")} />

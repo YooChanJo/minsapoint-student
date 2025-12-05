@@ -154,7 +154,6 @@ export interface TypographyOptionsType {
 }
 export const typographies: TypographyOptionsType = {
   fontSans: `"Inter", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif`,
-
   fontSizeXS: 12,
   fontSizeSM: 14,
   fontSizeMD: 16,
@@ -171,13 +170,12 @@ export interface ShadowOptionsType {
   shadowMD: string;
   shadowLG: string;
 }
+
 export const shadows: ShadowOptionsType = {
   shadowSM: "0 1px 2px rgba(0, 0, 0, 0.08)",
   shadowMD: "0 2px 4px rgba(0, 0, 0, 0.10)",
   shadowLG: "0 4px 12px rgba(0, 0, 0, 0.12)",
 };
-
-
 
 // All depreciated past styles are below
 

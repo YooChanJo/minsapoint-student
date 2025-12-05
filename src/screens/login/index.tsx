@@ -1,12 +1,5 @@
 import { useState } from "react";
-import {
-  View,
-  Text,
-  TextInput,
-  TouchableOpacity,
-  StyleSheet,
-  ScrollView,
-} from "react-native";
+import { View, Text, TextInput, TouchableOpacity, StyleSheet, ScrollView } from "react-native";
 //import { useAuth } from "../../components/auth-provider";
 import NavigationAPI from "../../api/navigation";
 import UserAPI from "../../api/user";
@@ -46,7 +39,6 @@ function LoginScreen() {
   return (
     <ScrollView style={{ backgroundColor: colors.light.background }}>
       <View style={styles.container}>
-        
         {/* 🔵 일러스트 영역 */}
         <View style={styles.illustrationWrapper}>
           <View style={styles.illustrationPlaceholder} />
@@ -82,12 +74,8 @@ function LoginScreen() {
           onPress={OnLoginButtenPress}
           disabled={loading}
         >
-          <Text style={styles.loginButtonText}>
-            {loading ? "Loading..." : "Sign in"}
-          </Text>
+          <Text style={styles.loginButtonText}>{loading ? "Loading..." : "Sign in"}</Text>
         </TouchableOpacity>
-
-
       </View>
     </ScrollView>
   );

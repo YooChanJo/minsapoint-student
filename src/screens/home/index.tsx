@@ -30,9 +30,7 @@ export default function HomeScreen() {
   });
 
   const totalScore =
-    penaltyPoints !== undefined && rewardPoints !== undefined
-      ? penaltyPoints - rewardPoints
-      : "";
+    penaltyPoints !== undefined && rewardPoints !== undefined ? penaltyPoints - rewardPoints : "";
 
   return (
     <View style={styles.container}>
@@ -98,12 +96,14 @@ export default function HomeScreen() {
 // -------------------- Styles --------------------
 //
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: colors.light.background,
-    paddingVertical: 40,
-    paddingHorizontal: 24,
-  },
+container: {
+  flex: 1,
+  backgroundColor: colors.light.background,
+  paddingVertical: 40,
+  paddingHorizontal: 24,
+
+},
+
 
   topBar: {
     width: "100%",
@@ -217,5 +217,6 @@ const styles = StyleSheet.create({
     fontSize: typographies.fontSizeMD,
     color: colors.light.text,
     textAlign: "center",
+    fontFamily: typographies.fontSans,
   },
 });
