@@ -93,37 +93,73 @@ export const colors: ColorStyleOptionsType = {
   Can use numbers instead of px in case change type to number and change entry to wanted number
 */
 export interface BorderOptionsType {
-  radiusSM: string; // small rounding
-  radiusMD: string; // middle default
-  radiusLG: string; // large rounding
-  radiusFull: string; // full rounding
+  radiusSM: number; // small rounding
+  radiusMD: number; // middle default
+  radiusLG: number; // large rounding
+  radiusFull: number; // full rounding
 }
 export const borders: BorderOptionsType = {
-  radiusSM: "4px",
-  radiusMD: "8px",
-  radiusLG: "16px",
-  radiusFull: "9999px",
+  radiusSM: 4,
+  radiusMD: 8,
+  radiusLG: 16,
+  radiusFull: 9999,
 };
 
 export interface TypographyOptionsType {
   fontSans: string; // main font stack
-  fontSizeXS: string; // extra small text labels, tooltips, chips, captions
-  fontSizeSM: string; // small text subtexts, secondary descriptions, table text
-  fontSizeMD: string; // default body text, paragraphs, inputs, buttons
-  fontSizeLG: string; // large text, section titles, medium headers
-  fontSizeXL: string; // extra large text, headlines, modal titles
-  fontWeightRegular: string; // regular weight
-  fontWeightMedium: string; // slightly bold, buttons, labels, navigation items
-  fontWeightBold: string; // strong emphasis
+  fontSizeXS: number; // extra small text labels, tooltips, chips, captions
+  fontSizeSM: number; // small text subtexts, secondary descriptions, table text
+  fontSizeMD: number; // default body text, paragraphs, inputs, buttons
+  fontSizeLG: number; // large text, section titles, medium headers
+  fontSizeXL: number; // extra large text, headlines, modal titles
+
+  fontWeightRegular:
+    | "normal"
+    | "bold"
+    | "100"
+    | "200"
+    | "300"
+    | "400"
+    | "500"
+    | "600"
+    | "700"
+    | "800"
+    | "900";
+
+  fontWeightMedium:
+    | "normal"
+    | "bold"
+    | "100"
+    | "200"
+    | "300"
+    | "400"
+    | "500"
+    | "600"
+    | "700"
+    | "800"
+    | "900";
+
+  fontWeightBold:
+    | "normal"
+    | "bold"
+    | "100"
+    | "200"
+    | "300"
+    | "400"
+    | "500"
+    | "600"
+    | "700"
+    | "800"
+    | "900";
 }
 export const typographies: TypographyOptionsType = {
   fontSans: `"Inter", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif`,
 
-  fontSizeXS: "12px",
-  fontSizeSM: "14px",
-  fontSizeMD: "16px",
-  fontSizeLG: "18px",
-  fontSizeXL: "24px",
+  fontSizeXS: 12,
+  fontSizeSM: 14,
+  fontSizeMD: 16,
+  fontSizeLG: 18,
+  fontSizeXL: 24,
 
   fontWeightRegular: "400",
   fontWeightMedium: "500",
@@ -140,6 +176,8 @@ export const shadows: ShadowOptionsType = {
   shadowMD: "0 2px 4px rgba(0, 0, 0, 0.10)",
   shadowLG: "0 4px 12px rgba(0, 0, 0, 0.12)",
 };
+
+
 
 // All depreciated past styles are below
 

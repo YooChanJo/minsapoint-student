@@ -48,3 +48,6 @@ export function UiStylesProvider({ colorScheme, children }: UiStylesProviderProp
 
   return <UiStylesContext.Provider value={uiStylesValue}>{children}</UiStylesContext.Provider>;
 }
+
+export { colors, borders, typographies, shadows };
+
