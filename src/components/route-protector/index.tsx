@@ -53,7 +53,7 @@ function RouteProtector(Screen: FC, role: BackendUserRole) {
         } else {
           try {
             const currentUserInfo = await UserAPI.getCurrentUserInfo(accessToken);
-            if (currentUserInfo.role != "STUDENT") {
+            if (currentUserInfo.role != role) {
               await UserAPI.signUserOut();
               navigationRef.dispatch(
                 CommonActions.reset({
