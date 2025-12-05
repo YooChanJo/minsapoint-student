@@ -11,7 +11,7 @@ import { RootStackParamList } from "./src/config/screen-structure";
 import { navigationRef } from "./src/api/navigation";
 
 /* Screens */
-import { AuthProvider } from "./src/components/auth-provider";
+import { AuthProvider, useAuth } from "./src/components/auth-provider";
 import { UiStylesProvider } from "./src/components/ui-styles-provider";
 import { RouteProtector } from "./src/components/route-protector";
 
@@ -23,9 +23,10 @@ import SettingsScreen from "./src/screens/settings";
 
 const Stack = createNativeStackNavigator<RootStackParamList>();
 function RootStack() {
+  const { userLoggedIn } = useAuth()
   return (
     /* Debug screens */
-    <Stack.Navigator>
+    <Stack.Navigator initialRouteName={userLoggedIn ? "Home" : "Login"} >
       <Stack.Screen name="Home" component={RouteProtector(HomeScreen, "STUDENT")} />
       <Stack.Screen name="History" component={RouteProtector(HistoryScreen, "STUDENT")} />
       <Stack.Screen name="Settings" component={RouteProtector(SettingsScreen, "STUDENT")} />

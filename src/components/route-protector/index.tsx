@@ -52,10 +52,8 @@ function RouteProtector(Screen: FC, role: BackendUserRole) {
           );
         } else {
           try {
-            setLoading(false);
-            return;
             const currentUserInfo = await UserAPI.getCurrentUserInfo(accessToken);
-            if (currentUserInfo.role !== "STUDENT") {
+            if (currentUserInfo.role != "STUDENT") {
               await UserAPI.signUserOut();
               navigationRef.dispatch(
                 CommonActions.reset({
@@ -65,7 +63,6 @@ function RouteProtector(Screen: FC, role: BackendUserRole) {
               );
             }
           } catch (e) {
-            Alert.alert("e");
             console.error("Failed to get current user info: ", e);
             await UserAPI.signUserOut();
             navigationRef.dispatch(
