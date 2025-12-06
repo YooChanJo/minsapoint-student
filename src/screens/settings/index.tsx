@@ -1,47 +1,104 @@
-// import React from "react";
-// import LinkWrapper from "@/src/components/link-wrapper";
-// import { Text, TouchableOpacity, View } from "react-native";
-// import { StackActions } from "@react-navigation/native";
-
-// import { useUiStyles } from "@/src/components/ui-styles-provider";
-
-// export default function SettingsScreen() {
-//   const { commonStyles } = useUiStyles();
-
-//   const handleLogout = () => {
-//     alert("로그아웃 버튼이 눌렸습니다.");
-//     // 여기서 실제 로그아웃 처리(ex: 토큰 삭제, 로그인 화면으로 이동 등)를 하면 돼
-//   };
-
-//   return (
-//     <View style={commonStyles.container}>
-//       <View style={commonStyles.infoBox}>
-//         <Text style={commonStyles.infoTitle}>이름</Text>
-//         <Text style={commonStyles.infoText}>왕두균 선생님</Text>
-
-//         <Text style={commonStyles.infoTitle}>이메일</Text>
-//         <Text style={commonStyles.infoText}>wang@example.com</Text>
-
-//         <Text style={commonStyles.infoTitle}>전화번호</Text>
-//         <Text style={commonStyles.infoText}>010-1234-5678</Text>
-//       </View>
-
-//       {/* 로그아웃 버튼 */}
-//       <TouchableOpacity style={commonStyles.logoutButton} onPress={handleLogout}>
-//         <Text style={commonStyles.logoutButtonText}>로그아웃</Text>
-//       </TouchableOpacity>
-//       <LinkWrapper
-//         screen="StudentHome"
-//         action={StackActions.popTo("StudentHome")}
-//         style={commonStyles.homeButton}
-//         touchableOpacity={true}
-//       >
-//         <Text style={commonStyles.logoutButtonText}>홈화면 돌아가기</Text>
-//       </LinkWrapper>
-//     </View>
-//   );
-// }
+import React from "react";
+import { Text, TouchableOpacity, View, StyleSheet } from "react-native";
+import { StackActions } from "@react-navigation/native";
+import NavigationAPI from "../../api/navigation";
+import { colors, borders, typographies } from "../../components/ui-styles-provider";
 
 export default function SettingsScreen() {
-  return <>Hello World</>;
+  const navigation = NavigationAPI.useNavigationWithTS();
+
+  const handleLogout = () => {
+    //alert("로그아웃 버튼이 눌렸습니다.");
+    // 실제 로그아웃 처리(ex: 토큰 삭제, 로그인 화면 이동 등)를 여기서 수행
+  };
+
+  return (
+    <View style={styles.container}>
+      {/* 🔵 정보 박스 */}
+      <View style={styles.infoBox}>
+        <Text style={styles.infoTitle}>이름</Text>
+        <Text style={styles.infoText}>왕두균 선생님</Text>
+
+        <Text style={styles.infoTitle}>이메일</Text>
+        <Text style={styles.infoText}>wang@example.com</Text>
+
+        <Text style={styles.infoTitle}>전화번호</Text>
+        <Text style={styles.infoText}>010-1234-5678</Text>
+      </View>
+
+      {/* 🔵 로그아웃 버튼 */}
+      <TouchableOpacity style={styles.logoutButton} onPress={handleLogout}>
+        <Text style={styles.logoutButtonText}>로그아웃</Text>
+      </TouchableOpacity>
+
+      {/* 🔵 홈 화면 돌아가기 버튼 */}
+      <TouchableOpacity
+        style={styles.homeButton}
+        onPress={() => navigation.dispatch(StackActions.popTo("StudentHome"))}
+      >
+        <Text style={styles.homeButtonText}>홈화면 돌아가기</Text>
+      </TouchableOpacity>
+    </View>
+  );
 }
+
+//
+// -------------------- Styles --------------------
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    backgroundColor: colors.light.background,
+    paddingVertical: 40,
+    paddingHorizontal: 24,
+    fontFamily: typographies.fontSans,
+  },
+
+  infoBox: {
+    backgroundColor: colors.light.surface,
+    padding: 20,
+    borderRadius: borders.radiusLG,
+    marginBottom: 20,
+  },
+
+  infoTitle: {
+    fontSize: typographies.fontSizeSM,
+    fontWeight: typographies.fontWeightBold,
+    color: colors.light.textMuted,
+    marginTop: 12,
+  },
+
+  infoText: {
+    fontSize: typographies.fontSizeMD,
+    color: colors.light.text,
+    marginTop: 4,
+  },
+
+  logoutButton: {
+    backgroundColor: colors.light.primary,
+    paddingVertical: 14,
+    paddingHorizontal: 20,
+    borderRadius: borders.radiusLG,
+    alignItems: "center",
+    marginBottom: 12,
+  },
+
+  logoutButtonText: {
+    color: "#fff",
+    fontSize: typographies.fontSizeMD,
+    fontWeight: typographies.fontWeightMedium,
+  },
+
+  homeButton: {
+    backgroundColor: colors.light.text,
+    paddingVertical: 14,
+    paddingHorizontal: 20,
+    borderRadius: borders.radiusLG,
+    alignItems: "center",
+  },
+
+  homeButtonText: {
+    color: "#fff",
+    fontSize: typographies.fontSizeMD,
+    fontWeight: typographies.fontWeightMedium,
+  },
+});
