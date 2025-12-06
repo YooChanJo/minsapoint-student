@@ -1,113 +1,142 @@
-// import React from "react";
-// import { ScrollView, Text, TouchableOpacity, View } from "react-native";
-// import { StackActions } from "@react-navigation/native";
-// import Ionicons from "@react-native-vector-icons/ionicons";
+import React from "react";
+import { ScrollView, Text, TouchableOpacity, View, StyleSheet } from "react-native";
+import { StackActions } from "@react-navigation/native";
 
-// import { useUiStyles } from "@/src/components/ui-styles-provider";
-// import LinkWrapper from "@/src/components/link-wrapper";
+import { colors, borders, typographies } from "../../components/ui-styles-provider";
 
-// const warnings = [
-//   {
-//     id: 1,
-//     teacher: "홍길동",
-//     reason: "Didn't follow teacher's direction",
-//     score: 3,
-//   },
-//   {
-//     id: 2,
-//     teacher: "이순신",
-//     reason: "Didn't follow teacher's direction",
-//     score: 3,
-//   },
-//   {
-//     id: 3,
-//     teacher: "정약용",
-//     reason: "Didn't follow teacher's direction",
-//     score: 3,
-//   },
-// ];
-
-// export default function AlertsScreen() {
-//   const { commonStyles } = useUiStyles();
-
-//   return (
-//     <View style={commonStyles.container}>
-//       <LinkWrapper
-//         screen="StudentHome"
-//         action={StackActions.popTo("StudentHome")}
-//         style={commonStyles.topBar}
-//         touchableOpacity={true}
-//       >
-//         <Text style={commonStyles.appTitle}>MinsaPoint</Text>
-//       </LinkWrapper>
-//       <View>
-//         <View
-//           style={{
-//             flexDirection: "row",
-//             justifyContent: "flex-end",
-//             marginVertical: 8,
-//           }}
-//         >
-//           <TouchableOpacity style={{ flexDirection: "row", alignItems: "center" }}>
-//             <Ionicons name="close-circle-outline" size={20} color="#666" />
-//             <Text style={{ marginLeft: 4, color: "#666" }}>Clear All</Text>
-//           </TouchableOpacity>
-//         </View>
-//       </View>
-
-//       <ScrollView style={{ flex: 1, marginTop: 25 }}>
-//         {warnings.map(item => (
-//           <View
-//             key={item.id}
-//             style={{
-//               backgroundColor: "#fff",
-//               padding: 16,
-//               borderRadius: 12,
-//               borderWidth: 1,
-//               borderColor: "#ccc",
-//               marginBottom: 12,
-//             }}
-//           >
-//             <View
-//               style={{
-//                 flexDirection: "row",
-//                 justifyContent: "space-between",
-//               }}
-//             >
-//               <View
-//                 style={{
-//                   flexDirection: "row",
-//                   alignItems: "center",
-//                 }}
-//               >
-//                 <Ionicons name="information-circle-outline" size={18} color="#555" />
-//                 <Text
-//                   style={{
-//                     marginLeft: 6,
-//                     fontWeight: "bold",
-//                   }}
-//                 >
-//                   새로운 기소사항
-//                 </Text>
-//                 {/**이거는 메시지 종류에 따라 달라짐. 수정할 것. */}
-//               </View>
-//               <TouchableOpacity>
-//                 <Ionicons name="close-outline" size={20} color="#333" />
-//               </TouchableOpacity>
-//             </View>
-//             <Text style={{ marginTop: 12, marginBottom: 16 }}>
-//               {item.teacher} 선생님 - {item.reason} ({item.score}
-//               점)
-//             </Text>
-//           </View>
-//         ))}
-//       </ScrollView>
-//     </View>
-//   );
-// }
-
-import { Text } from "@react-navigation/elements";
+const warnings = [
+  { id: 1, teacher: "홍길동", reason: "Didn't follow teacher's direction", score: 3 },
+  { id: 2, teacher: "이순신", reason: "Didn't follow teacher's direction", score: 3 },
+  { id: 3, teacher: "정약용", reason: "Didn't follow teacher's direction", score: 3 },
+];
 
 export default function AlertsScreen() {
-  return <Text>Hello World</Text>;
+  return (
+    <View style={styles.container}>
+
+      {/* 🔵 Top Bar */}
+      <TouchableOpacity
+        onPress={() => StackActions.popTo("StudentHome")}
+        style={styles.topBar}
+      >
+        <Text style={styles.appTitle}>MinsaPoint</Text>
+      </TouchableOpacity>
+
+      {/* 🔵 Clear All */}
+      <View style={styles.clearContainer}>
+        <TouchableOpacity style={styles.clearButton}>
+          <Text style={styles.iconText}>(아이콘)</Text>
+          <Text style={styles.clearText}>Clear All</Text>
+        </TouchableOpacity>
+      </View>
+
+      {/* 🔵 Alerts List */}
+      <ScrollView style={{ flex: 1, marginTop: 25 }}>
+        {warnings.map((item) => (
+          <View key={item.id} style={styles.alertCard}>
+            <View style={styles.cardHeader}>
+              <View style={styles.headerLeft}>
+                <Text style={styles.iconText}>(아이콘)</Text>
+                <Text style={styles.headerTitle}>새로운 기소사항</Text>
+              </View>
+
+              <TouchableOpacity>
+                <Text style={styles.iconText}>(아이콘)</Text>
+              </TouchableOpacity>
+            </View>
+
+            <Text style={styles.alertBody}>
+              {item.teacher} 선생님 - {item.reason} ({item.score}점)
+            </Text>
+          </View>
+        ))}
+      </ScrollView>
+
+    </View>
+  );
 }
+
+//
+// -------------------- Styles --------------------
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    backgroundColor: colors.light.background,
+    paddingHorizontal: 24,
+    paddingVertical: 40,
+  },
+
+  topBar: {
+    width: "100%",
+    paddingBottom: 10,
+  },
+
+  appTitle: {
+    fontSize: typographies.fontSizeXL,
+    fontWeight: typographies.fontWeightBold,
+    color: colors.light.text,
+  },
+
+  clearContainer: {
+    flexDirection: "row",
+    justifyContent: "flex-end",
+    marginVertical: 8,
+  },
+
+  clearButton: {
+    flexDirection: "row",
+    alignItems: "center",
+  },
+
+  clearText: {
+    marginLeft: 4,
+    color: colors.light.textMuted,
+    fontSize: typographies.fontSizeSM,
+  },
+
+  iconText: {
+    fontSize: typographies.fontSizeMD,
+    color: colors.light.textMuted,
+  },
+
+  alertCard: {
+    backgroundColor: colors.light.surface,
+    paddingVertical: 16,
+    paddingHorizontal: 20,
+    borderRadius: borders.radiusLG,
+    borderWidth: 1,
+    borderColor: colors.light.border,
+    marginBottom: 12,
+
+    shadowColor: "#000",
+    shadowOffset: { width: 0, height: 1 },
+    shadowOpacity: 0.08,
+    shadowRadius: 2,
+    elevation: 1,
+  },
+
+  cardHeader: {
+    flexDirection: "row",
+    justifyContent: "space-between",
+  },
+
+  headerLeft: {
+    flexDirection: "row",
+    alignItems: "center",
+  },
+
+  headerTitle: {
+    marginLeft: 6,
+    fontSize: typographies.fontSizeMD,
+    fontWeight: typographies.fontWeightBold,
+    color: colors.light.text,
+  },
+
+  alertBody: {
+    marginTop: 12,
+    marginBottom: 16,
+    fontSize: typographies.fontSizeSM,
+    color: colors.light.text,
+    lineHeight: 20,
+  },
+});
