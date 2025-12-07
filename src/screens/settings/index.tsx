@@ -1,40 +1,54 @@
-import React from "react";
+import React, { useState } from "react";
 import { Text, TouchableOpacity, View, StyleSheet } from "react-native";
 import { StackActions } from "@react-navigation/native";
 import NavigationAPI from "../../api/navigation";
 import { colors, borders, typographies } from "../../components/ui-styles-provider";
+import { useAuth } from "../../components/auth-provider";
+import UserAPI from "../../api/user";
 
 export default function SettingsScreen() {
   const navigation = NavigationAPI.useNavigationWithTS();
+  const [name, setName] = useState<string>("");
+  const { currentUser, accessToken } = useAuth();
+  
 
-  const handleLogout = () => {
-    //alert("로그아웃 버튼이 눌렸습니다.");
-    // 실제 로그아웃 처리(ex: 토큰 삭제, 로그인 화면 이동 등)를 여기서 수행
+  NavigationAPI.useCompatibleEffect(() => {
+    async function init() {
+      try {
+        const userinfo = await UserAPI.getCurrentUserInfo(accessToken);
+        setName(userinfo.name);
+      } catch (e) {
+        console.error(e);
+      }
+    }
+    init();
+  });
+
+  const handleLogout = async () => {
+    try {
+      await UserAPI.signUserOut();
+    } catch (e) {
+      console.error(e);
+    }
   };
 
   return (
     <View style={styles.container}>
-      {/* 🔵 정보 박스 */}
       <View style={styles.infoBox}>
         <Text style={styles.infoTitle}>이름</Text>
-        <Text style={styles.infoText}>왕두균 선생님</Text>
+        <Text style={styles.infoText}>{name}</Text>
 
         <Text style={styles.infoTitle}>이메일</Text>
-        <Text style={styles.infoText}>wang@example.com</Text>
-
-        <Text style={styles.infoTitle}>전화번호</Text>
-        <Text style={styles.infoText}>010-1234-5678</Text>
+        <Text style={styles.infoText}>{!!currentUser ? currentUser.email : null}</Text>
       </View>
 
-      {/* 🔵 로그아웃 버튼 */}
       <TouchableOpacity style={styles.logoutButton} onPress={handleLogout}>
         <Text style={styles.logoutButtonText}>로그아웃</Text>
       </TouchableOpacity>
 
-      {/* 🔵 홈 화면 돌아가기 버튼 */}
       <TouchableOpacity
         style={styles.homeButton}
-        onPress={() => navigation.dispatch(StackActions.popTo("StudentHome"))}
+        onPress={() => navigation.dispatch(StackActions.popTo("Home"))}
       >
         <Text style={styles.homeButtonText}>홈화면 돌아가기</Text>
       </TouchableOpacity>

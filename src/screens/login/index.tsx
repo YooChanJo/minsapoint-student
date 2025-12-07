@@ -3,7 +3,6 @@ import { View, Text, TextInput, TouchableOpacity, StyleSheet, ScrollView } from 
 //import { useAuth } from "../../components/auth-provider";
 import NavigationAPI from "../../api/navigation";
 import UserAPI from "../../api/user";
-import { CommonActions } from "@react-navigation/native";
 
 // theme 가져오기
 import { colors, borders, typographies } from "../../components/ui-styles-provider";
@@ -22,15 +21,6 @@ function LoginScreen() {
     try {
       setLoading(true);
       const result = await UserAPI.signUserIn(email, password);
-
-      if (result) {
-        navigation.dispatch(
-          CommonActions.reset({
-            index: 0,
-            routes: [{ name: "Home" }],
-          })
-        );
-      }
     } finally {
       setLoading(false);
     }
@@ -39,20 +29,17 @@ function LoginScreen() {
   return (
     <ScrollView style={{ backgroundColor: colors.light.background }}>
       <View style={styles.container}>
-        {/* 🔵 일러스트 영역 */}
         <View style={styles.illustrationWrapper}>
           <View style={styles.illustrationPlaceholder} />
         </View>
 
-        {/* 🔵 제목 */}
         <Text style={styles.title}>Login</Text>
         <Text style={styles.subText}>Please Sign in to continue.</Text>
 
-        {/* 🔵 Input Fields */}
         <View style={styles.inputWrapper}>
           <TextInput
             style={styles.input}
-            placeholder="Username"
+            placeholder="Email"
             autoCapitalize="none"
             value={email}
             onChangeText={setEmail}
@@ -68,7 +55,6 @@ function LoginScreen() {
           />
         </View>
 
-        {/* 🔵 Sign In Button */}
         <TouchableOpacity
           style={styles.loginButton}
           onPress={OnLoginButtenPress}

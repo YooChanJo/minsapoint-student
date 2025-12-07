@@ -4,6 +4,7 @@ import { FirebaseAuthTypes, onAuthStateChanged } from "@react-native-firebase/au
 
 import NavigationAPI from "../../api/navigation";
 import { firebaseAuth } from "../../config/firebase";
+import { CommonActions } from "@react-navigation/native";
 
 export interface AuthContextType {
   currentUser: FirebaseAuthTypes.User | null;
@@ -30,17 +31,31 @@ export function AuthProvider({ children }: AuthProviderProps) {
   const [userLoggedIn, setUserLoggedIn] = useState<boolean>(false);
   const [accessToken, setAccessToken] = useState<string>("");
   const [loading, setLoading] = useState<boolean>(true);
+  
+  const navigation = NavigationAPI.useNavigationWithTS();
 
   async function initializeUser(user: FirebaseAuthTypes.User | null) {
     if (user) {
-      const token = await user.getIdToken();
-      setAccessToken(token);
       setCurrentUser(user);
       setUserLoggedIn(true);
+      const token = await user.getIdToken();
+      setAccessToken(token);
+      navigation.dispatch(
+        CommonActions.reset({
+          index: 0,
+          routes: [{ name: "Home" }],
+        })
+      );
     } else {
       setAccessToken("");
       setCurrentUser(null);
       setUserLoggedIn(false);
+      navigation.dispatch(
+        CommonActions.reset({
+          index: 0,
+          routes: [{ name: "Login" }],
+        })
+      );
     }
     setLoading(false);
   }
