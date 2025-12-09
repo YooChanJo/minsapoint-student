@@ -33,7 +33,7 @@ export default function HistoryScreen() {
       try {
         const currentUserAccusations = await AccusationAPI.getCurrentUserAccusations(accessToken);
         const updatedAccusations: ItemType[] = await Promise.all(
-          currentUserAccusations.map(async (accusation) => {
+          currentUserAccusations.map(async accusation => {
             const name = await UserAPI.getUserNameFromID(accusation.accuserId, accessToken);
             return { ...accusation, accuserName: name };
           })
@@ -58,11 +58,8 @@ export default function HistoryScreen() {
 
   return (
     <View style={styles.container}>
-
       <View style={styles.topBar}>
-        <TouchableOpacity
-          onPress={() => navigation.dispatch(StackActions.popTo("Home"))}
-        >
+        <TouchableOpacity onPress={() => navigation.dispatch(StackActions.popTo("Home"))}>
           <Text style={styles.appTitle}>MinsaPoint</Text>
         </TouchableOpacity>
       </View>
@@ -70,12 +67,9 @@ export default function HistoryScreen() {
       <FlatList
         style={{ marginTop: 20 }}
         data={accusations}
-        keyExtractor={(item) => item._id}
+        keyExtractor={item => item._id}
         renderItem={({ item }: { item: ItemType }) => (
-          <TouchableOpacity
-            style={styles.itemCard}
-            onPress={() => handleAccusationItemPress(item)}
-          >
+          <TouchableOpacity style={styles.itemCard} onPress={() => handleAccusationItemPress(item)}>
             <Text style={styles.itemTitle}>{item.article}</Text>
             <Text style={styles.itemSub}>date: {item.date.split("T")[0]}</Text>
             <Text style={styles.itemSub}>penalty points: {item.penaltyPoints}</Text>
@@ -95,7 +89,6 @@ export default function HistoryScreen() {
           </View>
         </TouchableWithoutFeedback>
       </Modal>
-
     </View>
   );
 }

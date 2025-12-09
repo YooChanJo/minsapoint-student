@@ -1,21 +1,28 @@
-import React from "react";
+import React, { useState } from "react";
 import { ScrollView, Text, TouchableOpacity, View, StyleSheet } from "react-native";
 import { StackActions } from "@react-navigation/native";
 
 import { colors, borders, typographies } from "../../components/ui-styles-provider";
 import NavigationAPI from "../../api/navigation";
-
-const warnings = [
-  { id: 1, teacher: "홍길동", reason: "Didn't follow teacher's direction", score: 3 },
-  { id: 2, teacher: "이순신", reason: "Didn't follow teacher's direction", score: 3 },
-  { id: 3, teacher: "정약용", reason: "Didn't follow teacher's direction", score: 3 },
-];
+import AlertAPI, { BackendAlert } from "../../api/alert";
+import { useAuth } from "../../components/auth-provider";
 
 export default function AlertsScreen() {
   const navigation = NavigationAPI.useNavigationWithTS();
+  const [alerts, setAlerts] = useState<BackendAlert[]>([]);
+
+  const { accessToken } = useAuth();
+
+  NavigationAPI.useCompatibleEffect(() => {
+    async function init() {
+      const response = await AlertAPI.getCurrentUserAlerts(accessToken);
+      setAlerts(response);
+    }
+    init();
+  });
+
   return (
     <View style={styles.container}>
-
       <TouchableOpacity
         onPress={() => navigation.dispatch(StackActions.popTo("Home"))}
         style={styles.topBar}
@@ -31,8 +38,8 @@ export default function AlertsScreen() {
       </View>
 
       <ScrollView style={{ flex: 1, marginTop: 25 }}>
-        {warnings.map((item) => (
-          <View key={item.id} style={styles.alertCard}>
+        {alerts.map(item => (
+          <View key={item._id} style={styles.alertCard}>
             <View style={styles.cardHeader}>
               <View style={styles.headerLeft}>
                 <Text style={styles.iconText}>(아이콘)</Text>
@@ -45,12 +52,11 @@ export default function AlertsScreen() {
             </View>
 
             <Text style={styles.alertBody}>
-              {item.teacher} 선생님 - {item.reason} ({item.score}점)
+              {item.description}
             </Text>
           </View>
         ))}
       </ScrollView>
-
     </View>
   );
 }

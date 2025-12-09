@@ -10,7 +10,6 @@ export default function SettingsScreen() {
   const navigation = NavigationAPI.useNavigationWithTS();
   const [name, setName] = useState<string>("");
   const { currentUser, accessToken } = useAuth();
-  
 
   NavigationAPI.useCompatibleEffect(() => {
     async function init() {

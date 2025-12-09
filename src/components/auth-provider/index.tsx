@@ -31,7 +31,7 @@ export function AuthProvider({ children }: AuthProviderProps) {
   const [userLoggedIn, setUserLoggedIn] = useState<boolean>(false);
   const [accessToken, setAccessToken] = useState<string>("");
   const [loading, setLoading] = useState<boolean>(true);
-  
+
   const navigation = NavigationAPI.useNavigationWithTS();
 
   async function initializeUser(user: FirebaseAuthTypes.User | null) {

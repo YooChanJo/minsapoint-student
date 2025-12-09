@@ -5,6 +5,7 @@ import { colors, borders, typographies } from "../../components/ui-styles-provid
 import { useAuth } from "../../components/auth-provider";
 import NavigationAPI from "../../api/navigation";
 import UserAPI from "../../api/user";
+import AlertAPI from "../../api/alert";
 
 export default function HomeScreen() {
   const { accessToken } = useAuth();
@@ -12,6 +13,7 @@ export default function HomeScreen() {
   const [penaltyPoints, setPenaltyPoints] = useState<number | undefined>(undefined);
   const [rewardPoints, setRewardPoints] = useState<number | undefined>(undefined);
   const [hasCourt, setHasCourt] = useState<boolean | undefined>(undefined);
+  const [alertNumber, setAlertNumber] = useState<number | null>(null);
 
   const navigation = NavigationAPI.useNavigationWithTS();
 
@@ -22,6 +24,8 @@ export default function HomeScreen() {
         setPenaltyPoints(currentUserInfo.penaltyPoints);
         setRewardPoints(currentUserInfo.rewardPoints);
         setHasCourt(currentUserInfo.hasCourt);
+        const alerts = await AlertAPI.getCurrentUserAlerts(accessToken);
+        setAlertNumber(alerts.length);
       } catch (e) {
         console.error("Failed to fetch current user info: ", e);
       }
@@ -49,7 +53,7 @@ export default function HomeScreen() {
         <Text style={styles.textButton}>(알림)</Text>
 
         <View style={styles.badge}>
-          <Text style={styles.badgeText}>3</Text>
+          <Text style={styles.badgeText}>{alertNumber}</Text>
         </View>
       </TouchableOpacity>
 
@@ -90,14 +94,12 @@ export default function HomeScreen() {
 // -------------------- Styles --------------------
 //
 const styles = StyleSheet.create({
-container: {
-  flex: 1,
-  backgroundColor: colors.light.background,
-  paddingVertical: 40,
-  paddingHorizontal: 24,
-
-},
-
+  container: {
+    flex: 1,
+    backgroundColor: colors.light.background,
+    paddingVertical: 40,
+    paddingHorizontal: 24,
+  },
 
   topBar: {
     width: "100%",
