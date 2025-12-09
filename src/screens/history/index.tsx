@@ -59,18 +59,14 @@ export default function HistoryScreen() {
   return (
     <View style={styles.container}>
 
-      {/* 🔵 Top Bar */}
       <View style={styles.topBar}>
-        <Text style={styles.appTitle}>MinsaPoint</Text>
-
         <TouchableOpacity
-          onPress={() => navigation.dispatch(StackActions.popTo("StudentHome"))}
+          onPress={() => navigation.dispatch(StackActions.popTo("Home"))}
         >
-          <Text style={styles.textButton}>(홈)</Text>
+          <Text style={styles.appTitle}>MinsaPoint</Text>
         </TouchableOpacity>
       </View>
 
-      {/* 🔵 Accusation List */}
       <FlatList
         style={{ marginTop: 20 }}
         data={accusations}
@@ -88,7 +84,6 @@ export default function HistoryScreen() {
         )}
       />
 
-      {/* 🔵 Modal */}
       <Modal visible={modalVisible} transparent animationType="fade" onRequestClose={closeModal}>
         <TouchableWithoutFeedback onPress={closeModal}>
           <View style={styles.modalBackdrop}>

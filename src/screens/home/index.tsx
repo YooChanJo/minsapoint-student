@@ -34,17 +34,14 @@ export default function HomeScreen() {
 
   return (
     <View style={styles.container}>
-      {/* 🔵 Top Bar */}
       <View style={styles.topBar}>
         <Text style={styles.appTitle}>MinsaPoint</Text>
 
-        {/* 설정 버튼 */}
         <TouchableOpacity onPress={() => navigation.navigate("Settings")}>
           <Text style={styles.textButton}>(설정)</Text>
         </TouchableOpacity>
       </View>
 
-      {/* 🔵 Notification */}
       <TouchableOpacity
         style={styles.notificationWrapper}
         onPress={() => navigation.navigate("Alerts")}
@@ -56,7 +53,6 @@ export default function HomeScreen() {
         </View>
       </TouchableOpacity>
 
-      {/* 🔵 Score Section */}
       <View style={styles.scoreSection}>
         <Text style={styles.grayLabel}>누계</Text>
 
@@ -73,7 +69,6 @@ export default function HomeScreen() {
           </View>
         </View>
 
-        {/* History 버튼 */}
         <TouchableOpacity
           style={styles.historyButton}
           onPress={() => navigation.navigate("History")}
@@ -82,7 +77,6 @@ export default function HomeScreen() {
         </TouchableOpacity>
       </View>
 
-      {/* 🔵 Info Box */}
       <View style={styles.infoBox}>
         <Text style={styles.infoText}>
           {hasCourt ? "이번주 법정 대상자입니다" : "이번주 법정 대상자가 아닙니다"}

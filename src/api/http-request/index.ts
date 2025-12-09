@@ -5,9 +5,9 @@ import { Platform } from "react-native";
 /* in config deep-linking there is also frontend links to be cleaned up */
 function parseAPIRequestURL(url: string) {
   // later on replace this defaultPrefix with backend deployed host(including port)
-  // const defaultPrefix = "http://10.0.2.2:3000";
+  const defaultPrefix = "http://10.0.2.2:3000";
   /* /api would be mapped to http://localhost:3000/api in web dev and https://minsapoint_backend_deploy/api in deploy */
-  const defaultPrefix = "http://192.168.35.208:3000";
+  // const defaultPrefix = "http://192.168.35.46:3000";
   return url.startsWith("/") ? defaultPrefix + url : url;
 }
 

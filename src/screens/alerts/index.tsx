@@ -3,6 +3,7 @@ import { ScrollView, Text, TouchableOpacity, View, StyleSheet } from "react-nati
 import { StackActions } from "@react-navigation/native";
 
 import { colors, borders, typographies } from "../../components/ui-styles-provider";
+import NavigationAPI from "../../api/navigation";
 
 const warnings = [
   { id: 1, teacher: "홍길동", reason: "Didn't follow teacher's direction", score: 3 },
@@ -11,18 +12,17 @@ const warnings = [
 ];
 
 export default function AlertsScreen() {
+  const navigation = NavigationAPI.useNavigationWithTS();
   return (
     <View style={styles.container}>
 
-      {/* 🔵 Top Bar */}
       <TouchableOpacity
-        onPress={() => StackActions.popTo("StudentHome")}
+        onPress={() => navigation.dispatch(StackActions.popTo("Home"))}
         style={styles.topBar}
       >
         <Text style={styles.appTitle}>MinsaPoint</Text>
       </TouchableOpacity>
 
-      {/* 🔵 Clear All */}
       <View style={styles.clearContainer}>
         <TouchableOpacity style={styles.clearButton}>
           <Text style={styles.iconText}>(아이콘)</Text>
@@ -30,7 +30,6 @@ export default function AlertsScreen() {
         </TouchableOpacity>
       </View>
 
-      {/* 🔵 Alerts List */}
       <ScrollView style={{ flex: 1, marginTop: 25 }}>
         {warnings.map((item) => (
           <View key={item.id} style={styles.alertCard}>
